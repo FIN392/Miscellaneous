@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<!--//
+
+Description: Dark Theme for Notepad++
+How to:      Copy the file into the folder '%APPDATA%\Notepad++\themes'
+Author:      FIN392 (https://github.com/FIN392)
+Note:        I don't claim any ownership of this theme. It is merely a copy&paste of another.
+
+//-->
+<NotepadPlus>
+    <LexerStyles>
+        <LexerType name="sql" desc="SQL" ext="">
+            <WordsStyle name="KEYWORD" styleID="5" fgColor="569CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1">nvarchar uniqueidentifier</WordsStyle>
+            <WordsStyle name="NUMBER" styleID="4" fgColor="B5CEA8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRING" styleID="6" fgColor="CB4141" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">ooooo</WordsStyle>
+            <WordsStyle name="STRING2" styleID="7" fgColor="CB4141" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="10" fgColor="818181" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="COMMENT LINE" styleID="2" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="COMMENT DOC" styleID="3" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="COMMENT LINE DOC" styleID="15" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+        </LexerType>
+        <LexerType name="html" desc="HTML" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="F5F5F5" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="9" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="5" fgColor="FE7298" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">the_ID the_post have_posts wp_link_pages the_content</WordsStyle>
+            <WordsStyle name="DOUBLESTRING" styleID="6" fgColor="FF9171" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SINGLESTRING" styleID="7" fgColor="FF8F59" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAG" styleID="1" fgColor="58B1FA" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAGEND" styleID="11" fgColor="55AAFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">$_POST $_GET $_SESSION</WordsStyle>
+            <WordsStyle name="TAGUNKNOWN" styleID="2" fgColor="4B7DC8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ATTRIBUTE" styleID="3" fgColor="FAFAC8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ATTRIBUTEUNKNOWN" styleID="4" fgColor="C4FEA7" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SGMLDEFAULT" styleID="21" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CDATA" styleID="17" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="VALUE" styleID="19" fgColor="CDAD98" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ENTITY" styleID="10" fgColor="9CF3C1" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="javascript" desc="Javascript" ext="">
+            <WordsStyle name="DEFAULT" styleID="41" fgColor="C0C0C0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="45" fgColor="8AE1AD" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="WORD" styleID="46" fgColor="FAFAF0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="KEYWORD" styleID="47" fgColor="E67DDC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1">null undefined let eval yield arguments get set</WordsStyle>
+            <WordsStyle name="DOUBLESTRING" styleID="48" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">XmlUtil loadXmlString TopologyXmlTree NotificationArea loadXmlFile debug</WordsStyle>
+            <WordsStyle name="SINGLESTRING" styleID="49" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SYMBOLS" styleID="50" fgColor="C0C0C0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRINGEOL" styleID="51" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="REGEX" styleID="52" fgColor="D96D68" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="42" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="COMMENTLINE" styleID="43" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="COMMENTDOC" styleID="44" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+        </LexerType>
+        <LexerType name="json" desc="JSON" ext="">
+            <WordsStyle name="DEFAULT" styleID="11" fgColor="000000" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="4" fgColor="A6CEA8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRING DOUBLE QUOTE" styleID="6" fgColor="D7BA7D" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRING SINGLE QUOTE" styleID="7" fgColor="808080" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">import</WordsStyle>
+            <WordsStyle name="BOOLEAN NULL" styleID="5" fgColor="569CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="1" fontSize="10" keywordClass="instre1">import</WordsStyle>
+            <WordsStyle name="OPERATOR" styleID="10" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="1" fontSize="10" />
+        </LexerType>
+        <LexerType name="xml" desc="XML" ext="xaml svg xul vcxproj csproj vbproj fsproj lsxtproj shproj xproj ccproj jsproj sqlproj dbproj msbuildproj props">
+            <WordsStyle name="XMLSTART" styleID="12" fgColor="FFFFFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="XMLEND" styleID="13" fgColor="FFFFFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="FEFFCA" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="9" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="5" fgColor="0FF47D" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DOUBLESTRING" styleID="6" fgColor="FF9473" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SINGLESTRING" styleID="7" fgColor="FF947D" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAG" styleID="1" fgColor="3CBEF0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAGEND" styleID="11" fgColor="3ECCF0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAGUNKNOWN" styleID="2" fgColor="C0C0C0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ATTRIBUTE" styleID="3" fgColor="B0FFE8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ATTRIBUTEUNKNOWN" styleID="4" fgColor="C7FF88" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SGMLDEFAULT" styleID="21" fgColor="808080" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CDATA" styleID="17" fgColor="C88ABE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="ini" desc="ini file" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="74F1AC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="SECTION" styleID="2" fgColor="62BCFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ASSIGNMENT" styleID="3" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DEFVAL" styleID="4" fgColor="569CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="vb" desc="VB / VBS" ext="">
+            <WordsStyle name="DEFAULT" styleID="7" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="2" fgColor="B5CEA8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="WORD" styleID="3" fgColor="4E9CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1" />
+            <WordsStyle name="STRING" styleID="4" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="PREPROCESSOR" styleID="5" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="6" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DATE" styleID="8" fgColor="8DA6CE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="css" desc="CSS" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TAG" styleID="1" fgColor="9393FF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CLASS" styleID="2" fgColor="FF80C0" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="PSEUDOCLASS" styleID="3" fgColor="569CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="UNKNOWN_PSEUDOCLASS" styleID="4" fgColor="569CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="5" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="IDENTIFIER" styleID="6" fgColor="12C79E" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1" />
+            <WordsStyle name="UNKNOWN_IDENTIFIER" styleID="7" fgColor="8DA6CE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="VALUE" styleID="8" fgColor="FF8448" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="9" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="ID" styleID="10" fgColor="409FFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="IMPORTANT" styleID="11" fgColor="FFFFB9" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DIRECTIVE" styleID="12" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="batch" desc="Batch" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="FFFFFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="KEYWORDS" styleID="2" fgColor="FAA569" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1">assoc attrib break bcdedit cacls call cd chcp chdir chkdsk chkntfs cls cmd color comp compact convert copy date del dir diskpart doskey driverquery echo endlocal erase exit fc find findstr for format fsutil ftype goto gpresult graftabl help icacls if label md mkdir mklink mode more move openfiles path pause popd print prompt pushd rd recover rem ren rename replace rmdir robocopy set setlocal sc schtasks shift shutdown sort start subst systeminfo tasklist taskkill time title tree type ver verify vol xcopy wmic</WordsStyle>
+            <WordsStyle name="LABEL" styleID="3" fgColor="FF80FF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="HIDE SYBOL" styleID="4" fgColor="FFFF00" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMAND" styleID="5" fgColor="FF80FF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="VARIABLE" styleID="6" fgColor="65C9FE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="7" fgColor="FFFF00" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="bash" desc="bash" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="ERROR" styleID="1" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="INSTRUCTION WORD" styleID="4" fgColor="4E9CD6" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre1" />
+            <WordsStyle name="NUMBER" styleID="3" fgColor="B5CEA8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRING" styleID="5" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CHARACTER" styleID="6" fgColor="D69D85" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="7" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="IDENTIFIER" styleID="8" fgColor="8DA6CE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="SCALAR" styleID="9" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT LINE" styleID="2" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="PARAM" styleID="10" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="BACKTICKS" styleID="11" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="HERE DELIM" styleID="12" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="HERE Q" styleID="13" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        </LexerType>
+        <LexerType name="powershell" desc="PowerShell" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="C8C8C8" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT" styleID="1" fgColor="57A64A" bgColor="000000" fontName="Source Code Pro" fontStyle="2" fontSize="10" />
+            <WordsStyle name="STRING" styleID="2" fgColor="F09B87" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CHARACTER" styleID="3" fgColor="FAA569" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="NUMBER" styleID="4" fgColor="32EB87" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="VARIABLE" styleID="5" fgColor="65C9FE" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10">True False</WordsStyle>
+            <WordsStyle name="OPERATOR" styleID="6" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="INSTRUCTION WORD" styleID="8" fgColor="E67DDC" bgColor="000000" fontName="Source Code Pro" fontStyle="1" fontSize="10" keywordClass="instre1">try catch throw exit</WordsStyle>
+            <WordsStyle name="CMDLET" styleID="9" fgColor="FFFFBB" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="instre2">mkdir</WordsStyle>
+            <WordsStyle name="ALIAS" styleID="10" fgColor="9B9B9B" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" keywordClass="type1" />
+        </LexerType>
+        <LexerType name="python" desc="Python" ext="">
+            <WordsStyle name="DEFAULT" styleID="0" fgColor="DCDCCC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT LINE" styleID="1" fgColor="7F9F7F" bgColor="000000" fontName="" fontStyle="3" fontSize="" />
+            <WordsStyle name="NUMBER" styleID="2" fgColor="8CD0D3" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="STRING" styleID="3" fgColor="CC9393" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CHARACTER" styleID="4" fgColor="DCA3A3" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="KEYWORDS" styleID="5" fgColor="DFC47D" bgColor="000000" fontName="" fontStyle="1" fontSize="" keywordClass="instre1" />
+            <WordsStyle name="TRIPLE" styleID="6" fgColor="7F9F7F" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="TRIPLE DOUBLE" styleID="7" fgColor="7F9F7F" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="CLASS NAME" styleID="8" fgColor="DCDCCC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DEF NAME" styleID="9" fgColor="CEDF99" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="OPERATOR" styleID="10" fgColor="9F9D6D" bgColor="000000" fontName="" fontStyle="1" fontSize="" />
+            <WordsStyle name="IDENTIFIER" styleID="11" fgColor="DCDCCC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="COMMENT BLOCK" styleID="12" fgColor="7F9F7F" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="BUILTINS" styleID="14" fgColor="DCDCCC" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="DECORATOR" styleID="15" fgColor="93E0E3" bgColor="000000" fontName="" fontStyle="2" fontSize="" />
+            <WordsStyle name="F STRING" styleID="16" fgColor="CC9393" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="F CHARACTER" styleID="17" fgColor="DCA3A3" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="F TRIPLE" styleID="18" fgColor="7F9F7F" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+            <WordsStyle name="F TRIPLEDOUBLE" styleID="19" fgColor="7F9F7F" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+		</LexerType>		
+    </LexerStyles>
+    <GlobalStyles>
+        <!-- Attention : Don't modify the name of styleID="0" -->
+        <WidgetStyle name="Global override" styleID="0" fgColor="FFFFFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        <WidgetStyle name="Default Style" styleID="32" fgColor="FFFFFF" bgColor="000000" fontName="Source Code Pro" fontStyle="0" fontSize="10" />
+        <WidgetStyle name="Indent guideline style" styleID="37" fgColor="808080" bgColor="000000" fontName="" fontStyle="0" fontSize="10" />
+        <WidgetStyle name="Brace highlight style" styleID="34" fgColor="00FF00" bgColor="000000" fontName="" fontStyle="1" fontSize="10" />
+        <WidgetStyle name="Bad brace colour" styleID="35" fgColor="FF0000" bgColor="000000" fontName="" fontStyle="1" fontSize="10" />
+        <WidgetStyle name="Current line background colour" styleID="0" bgColor="282828" fgColor="FFFFFF" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="Selected text colour" styleID="0" bgColor="FFFFFF" fgColor="CC0000" fontStyle="0" />
+        <WidgetStyle name="Caret colour" styleID="2069" fgColor="FFFFFF" bgColor="000000" fontStyle="0" />
+        <WidgetStyle name="Edge colour" styleID="0" fgColor="80FFFF" bgColor="000000" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="Line number margin" styleID="33" fgColor="FFFFFF" bgColor="000000" fontName="" fontStyle="0" fontSize="10" />
+        <WidgetStyle name="Bookmark margin" styleID="0" bgColor="000000" fontStyle="0" />
+        <WidgetStyle name="Fold" styleID="0" fgColor="808080" bgColor="000000" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="Fold active" styleID="0" fgColor="000000" fontStyle="0" />
+        <WidgetStyle name="Fold margin" styleID="0" fgColor="282828" bgColor="282828" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="White space symbol" styleID="0" fgColor="808080" bgColor="000000" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="Smart HighLighting" styleID="29" bgColor="FFFFFF" fgColor="FFFFFF" fontStyle="0" />
+        <WidgetStyle name="Find Mark Style" styleID="31" fgColor="FFFF00" bgColor="FF0000" fontName="" fontStyle="1" fontSize="10" />
+        <WidgetStyle name="Mark Style 1" styleID="25" bgColor="00FFFF" fontStyle="0" />
+        <WidgetStyle name="Mark Style 2" styleID="24" bgColor="FF8000" fontStyle="0" />
+        <WidgetStyle name="Mark Style 3" styleID="23" bgColor="FFFF00" fontStyle="0" />
+        <WidgetStyle name="Mark Style 4" styleID="22" bgColor="8000FF" fontStyle="0" />
+        <WidgetStyle name="Mark Style 5" styleID="21" bgColor="008000" fontStyle="0" />
+        <WidgetStyle name="Incremental highlight all" styleID="28" bgColor="FF8000" fgColor="555753" fontStyle="0" />
+        <WidgetStyle name="Tags match highlighting" styleID="27" bgColor="0080FF" fgColor="FCAF3E" fontStyle="0" />
+        <WidgetStyle name="Tags attribute" styleID="26" bgColor="808080" fontStyle="0" />
+        <WidgetStyle name="Active tab focused indicator" styleID="0" fgColor="FAAA3C" bgColor="FF8000" fontStyle="0" />
+        <WidgetStyle name="Active tab unfocused indicator" styleID="0" fgColor="FFCAB0" bgColor="FFFF00" fontStyle="0" />
+        <WidgetStyle name="Active tab text" styleID="0" fgColor="000000" bgColor="8000FF" fontSize="10" fontStyle="0" />
+        <WidgetStyle name="Inactive tabs" styleID="0" fgColor="808080" bgColor="C0C0C0" fontStyle="0" />
+        <WidgetStyle name="URL hovered" styleID="0" fgColor="FFFFFF" fontStyle="0" />
+    </GlobalStyles>
+</NotepadPlus>

@@ -1,0 +1,493 @@
+<HTML>
+<HEAD>
+<TITLE>ADSI Test Tool</TITLE>
+<HTA:APPLICATION 
+	ID="ADSITest"
+	VERSION="0.20 Beta"
+	APPLICATIONNAME="ADSI Test Tool"
+	SYSMENU="yes"
+	MAXIMIZEBUTTON="yes"
+	MINIMIZEBUTTON="yes"
+	BORDER="thin"
+	INNERBORDER="no"
+	SCROLL="auto"
+	SINGLEINSTANCE="yes"
+	WINDOWSTATE="maximize"
+>
+</HEAD>
+
+<SCRIPT LANGUAGE="VBScript">
+
+Option Explicit
+
+Dim numVerMsgSize, strAppName, strAppVer, strFileNames
+
+strAppName   = ADSITest.ApplicationName
+strAppVer    = ADSITest.Version
+strFileNames = LCase( ADSITest.ID )
+
+
+Sub CheckUpdate( )
+	Dim lenLatestVer, strCurrentVer, strLatestVer
+
+	' Change cursor to hourglass while checking for update
+	Document.Body.Style.Cursor = "wait"
+
+	strLatestVer  = TextFromHTML( "http://www.robvanderwoude.com/updates/" & strFileNames & ".txt" )
+	lenLatestVer  = Len( strLatestVer )
+	If lenLatestVer = 4 Then
+		strCurrentVer = Split( strAppVer )(0)
+		If strLatestVer < strCurrentVer Then
+			Update.InnerHTML = "<P>You are using an invalid version (" & strCurrentVer _
+			                 & ") of the " & strAppName _
+			                 & ".<BR>The latest valid version is "    _
+			                 & strLatestVer & " and it is available " _
+			                 & "<A HREF=""http://www.robvanderwoude.com/" _
+			                 & strFileNames & ".html"">" _
+			                 & "<FONT COLOR=""Red"">here</FONT></A>.</P>"
+			numVerMsgSize    = 85
+		End If
+		If strLatestVer > strCurrentVer Then
+			Update.InnerHTML = "<P>You are using version " & strCurrentVer _
+			                 & " of the " & strAppName _
+			                 & ".<BR>An update to version " _
+			                 & strLatestVer & " is available " _
+			                 & "<A HREF=""http://www.robvanderwoude.com/" _
+			                 & strFileNames & ".html"">" _
+			                 & "<FONT COLOR=""Red"">here</FONT></A>.</P>"
+			numVerMsgSize    = 85
+		End If
+	End If
+
+	' Change cursor back to default
+	Document.Body.Style.Cursor = "default"
+End Sub
+
+
+Sub ClearQuery( )
+	TestQueryInput.Value = ""
+End Sub
+
+
+Sub ClearResults( )
+	QueryResultObject.Value           = ""
+	QueryResultObjectMembers.Value    = ""
+	QueryResultObjectProperties.Value = ""
+End Sub
+
+
+Sub GetComputerDomain( )
+	Dim colItems, objItem, objSysInfo, objWMISvc
+
+	Set objWMISvc = GetObject( "winmgmts:\\.\root\cimv2" )
+
+	Set colItems = objWMISvc.ExecQuery( "Select * from Win32_ComputerSystem", , 48 )
+
+	For Each objItem in colItems
+		If objItem.PartOfDomain Then
+			' Use the Computer Domain for domain members . . .
+			TestQueryInput.Value = "WinNT://" & objItem.Domain
+		Else
+			' . . . or the User Domain for non-domain members
+			Set objSysInfo = CreateObject( "WinNTSystemInfo" )
+			TestQueryInput.Value = "WinNT://" & objSysInfo.DomainName
+			Set objSysInfo = Nothing
+		End If
+	Next
+
+	Set objWMISvc = Nothing
+End Sub
+
+
+Function GetMembers( strADSIObject )
+	Dim objADSIItem, objADSIObject, strName, strTxt
+
+	On Error Resume Next
+
+	Set objADSIObject = GetObject( strADSIObject )
+
+	For Each objADSIItem in objADSIObject
+		strName = objADSIItem.Name
+		If Len( strName ) > 28 Then
+			strName = Left( strName, 25 ) & "..."
+		End If
+		strTxt = strTxt & LeftPad( strName, 30, " " )
+		Select Case objADSIItem.Class
+			Case "Computer"
+				strTxt = strTxt _
+				       & LeftPad( objADSIItem.Class, 13, " " )
+				strTxt = strTxt _
+				       & "(" & objADSIItem.OperatingSystem & " " _
+				       & objADSIItem.OperatingSystemVersion & ")"
+			Case "Service"
+				strTxt = strTxt _
+				       & LeftPad( objADSIItem.Class, 13, " " ) _
+				       & "(" & objADSIItem.Path & ")"
+			Case "User"
+				strTxt = strTxt _
+				       & LeftPad( objADSIItem.Class, 13, " " ) _
+				       & "(" & objADSIItem.Description & ")"
+			Case Else
+				strTxt = strTxt _
+				       & objADSIItem.Class
+		End Select
+		strTxt = strTxt & vbCrLf
+	Next
+
+	On Error Goto 0
+
+	GetMembers = strTxt
+End Function
+
+
+Function GetProperties( strADSIObject )
+	'Example 15-8: Script to Walk Through the Property Cache for an Object and Display All Values 
+
+	'**********************************************************************
+	'Force error checking within the code using the Err.Number property
+	'method in approaches 2 and 3
+	'**********************************************************************
+
+	On Error Resume Next
+
+	'**********************************************************************
+	'Declare the constants and variables
+	'**********************************************************************
+
+	Const ADSTYPE_INVALID                =  0
+	Const ADSTYPE_DN_STRING              =  1
+	Const ADSTYPE_CASE_EXACT_STRING      =  2
+	Const ADSTYPE_CASE_IGNORE_STRING     =  3
+	Const ADSTYPE_PRINTABLE_STRING       =  4
+	Const ADSTYPE_NUMERIC_STRING         =  5
+	Const ADSTYPE_BOOLEAN                =  6
+	Const ADSTYPE_INTEGER                =  7
+	Const ADSTYPE_OCTET_STRING           =  8
+	Const ADSTYPE_UTC_TIME               =  9
+	Const ADSTYPE_LARGE_INTEGER          = 10
+	Const ADSTYPE_PROV_SPECIFIC          = 11
+	Const ADSTYPE_OBJECT_CLASS           = 12
+	Const ADSTYPE_CASEIGNORE_LIST        = 13
+	Const ADSTYPE_OCTET_LIST             = 14
+	Const ADSTYPE_PATH                   = 15
+	Const ADSTYPE_POSTALADDRESS          = 16
+	Const ADSTYPE_TIMESTAMP              = 17
+	Const ADSTYPE_BACKLINK               = 18
+	Const ADSTYPE_TYPEDNAME              = 19
+	Const ADSTYPE_HOLD                   = 20
+	Const ADSTYPE_NETADDRESS             = 21
+	Const ADSTYPE_REPLICAPOINTER         = 22
+	Const ADSTYPE_FAXNUMBER              = 23
+	Const ADSTYPE_EMAIL                  = 24
+	Const ADSTYPE_NT_SECURITY_DESCRIPTOR = 25
+	Const ADSTYPE_UNKNOWN                = 26
+
+	Const ADS_PROPERTY_CLEAR  = 1
+	Const ADS_PROPERTY_UPDATE = 2
+	Const ADS_PROPERTY_APPEND = 3
+	Const ADS_PROPERTY_DELETE = 4
+
+	Dim adsPropValue  'An individual property value within a loop
+	Dim adsPropEntry  'An ADSI PropertyEntry object
+	Dim adsObject     'The object whose property list we wish to investigate
+	Dim txtStr        'A text string used to display results in one go
+	Dim intPropCount  'The number of properties in 
+	Dim intIndex      'The index used while looping through the property list
+	Dim intCount      'Used to display property values in a numbered sequence
+
+
+	Set adsObject = GetObject( strADSIObject )
+	If Err Then
+		GetProperties = "Error "  &  Err.Number  & vbCrLf _
+		              & Err.Description & vbCrLf & vbCrLf
+		On Error Goto 0
+		Err.Clear
+		Exit Function
+	End If
+	adsObject.GetInfo
+
+	'**********************************************************************
+	'Write out the current property cache total to the string that is 
+	'storing output
+	'**********************************************************************
+
+	intPropCount = adsObject.PropertyCount
+	txtStr       = "There are " & intPropCount & " values in the property cache." & vbCrLf
+
+	'**********************************************************************
+	'The extra vbTabs used in the first loop are to space the results so 
+	'that they are nicely formatted with the list of values in the second loop
+	'**********************************************************************
+
+	For intIndex = 0 To ( intPropCount - 1 )
+		Set adsPropEntry = adsObject.Item(intIndex)
+		txtStr = txtStr & adsPropEntry.Name & vbCrLf
+
+		If (adsPropEntry.ADsType = ADSTYPE_INVALID) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "INVALID" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_DN_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "DN_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_CASE_EXACT_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "CASE_EXACT_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_CASE_IGNORE_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "CASE_IGNORE_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_PRINTABLE_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "PRINTABLE_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_NUMERIC_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "NUMERIC_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_BOOLEAN) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "BOOLEAN" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_INTEGER) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "INTEGER" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_OCTET_STRING) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "OCTET_STRING" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_UTC_TIME) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "UTC_TIME" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_LARGE_INTEGER) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "LARGE_INTEGER" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_PROV_SPECIFIC) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "PROV_SPECIFIC" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_OBJECT_CLASS) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "OBJECT_CLASS" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_CASEIGNORE_LIST) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "CASEIGNORE_LIST" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_OCTET_LIST) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "OCTET_LIST" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_PATH) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "PATH" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_POSTALADDRESS) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "POSTALADDRESS" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_TIMESTAMP) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "TIMESTAMP" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_BACKLINK) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "BACKLINK" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_TYPEDNAME) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "TYPEDNAME" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_HOLD) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "HOLD" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_NETADDRESS) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "NETADDRESS" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_REPLICAPOINTER) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "REPLICAPOINTER" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_FAXNUMBER) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "FAXNUMBER" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_EMAIL) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "EMAIL" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_NT_SECURITY_DESCRIPTOR) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "NT_SECURITY_DESCRIPTOR" & vbCrLf
+		ElseIf (adsPropEntry.ADsType = ADSTYPE_UNKNOWN) Then
+			txtStr = txtStr & vbTab & "Type:" & vbTab & vbTab & "UNKNOWN" & vbCrLf
+		End If
+
+		'**********************************************************************
+		'Go through each property value in the property entry and use the AdsType
+		'to print out the appropriate value, prefixed by a count (intCount), i.e.:
+		'
+		'  Value #1: Keith Cooper
+		'  Value #2: Vicky Launders
+		'  Value #3: Alistair Lowe-Norris
+		'**********************************************************************
+
+		intCount = 1
+
+		For Each adsPropValue In adsPropEntry.Values  
+			If (adsPropValue.ADsType = ADSTYPE_DN_STRING) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.DNString & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_CASE_EXACT_STRING) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.CaseExactString & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_CASE_IGNORE_STRING) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.CaseIgnoreString & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_PRINTABLE_STRING) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.PrintableString & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_NUMERIC_STRING) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.NumericString & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_BOOLEAN) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & CStr( adsPropValue.Boolean ) & vbCrLf
+			ElseIf (adsPropValue.ADsType = ADSTYPE_INTEGER) Then
+				txtStr = txtStr & vbTab & "Value #" & intCount & ":" _
+				       & vbTab & adsPropValue.Integer & vbCrLf
+
+			End If
+
+			intCount = intCount + 1
+
+		Next
+	Next
+
+	On Error Goto 0
+
+	GetProperties = txtStr & vbCrLf
+End Function
+
+
+Function LeftPad( strText, intLen, chrPad )
+	'LeftPad( "1234", 7, "x" ) = "1234xxx"
+	'LeftPad( "1234", 3, "x" ) = "123"
+	LeftPad = Left( strText & String( intLen, chrPad ), intLen )
+End Function
+
+
+Sub TestQuery( )
+	' Most of this subroutine is based on a script by Don Jones
+
+	Dim objObject
+
+	If TestQueryInput.Value = "" Then
+		Exit Sub
+	End If
+
+	On Error Resume Next
+
+	QueryResultObject.Value = QueryResultObject.Value _
+	                        & "Query:" & vbCrLf _
+	                        & "  " & TestQueryInput.Value & vbCrLf & vbCrLf _
+
+	Set objObject = GetObject( TestQueryInput.Value )
+	If Err Then
+		QueryResultObject.Value = QueryResultObject.Value _
+		                        & Err.Number & " " & Err.Description & vbCrLf _
+		                        & "An error occurred - couldn't connect using " _
+		                        & "the provider specified, or object doesn't exist" & vbCrLf & vbCrLf
+		Select Case Err.Number
+			Case -2147027843
+				QueryResultObject.Value = QueryResultObject.Value & vbCrLf _
+				                        & "Couldn't connect to server." & vbCrLf & vbCrLf
+			Case -2147467259
+				QueryResultObject.Value = QueryResultObject.Value & vbCrLf _
+				                        & "Unknown provider." & vbCrLf & vbCrLf
+			Case -2147022676, -2147023520
+				QueryResultObject.Value = QueryResultObject.Value & vbCrLf _
+				                        & "Server says object doesn't exist." & vbCrLf & vbCrLf
+			Case -2147463168
+				QueryResultObject.Value = QueryResultObject.Value & vbCrLf _
+				                        & "Illegal query - did you use backslahes by mistake?" & vbCrLf & vbCrLf
+		End Select
+		Err.Clear
+		On Error Goto 0
+		Exit Sub
+	End If
+
+	QueryResultObject.Value = QueryResultObject.Value _
+	                        & "Object returned:" & vbCrLf
+
+	If Not IsObject( objObject )  Then
+		QueryResultObject.Value = QueryResultObject.Value _
+		                        & "No object was returned" & vbCrLf
+	Else
+		QueryResultObject.Value = QueryResultObject.Value _
+	 	                        & "  Name  : " & objObject.Name & vbCrLf
+		If Err Then
+			QueryResultObject.Value = QueryResultObject.Value _
+			                        & "  does not have a Name property" & vbCrLf
+			Err.Clear
+		End If
+
+		QueryResultObject.Value = QueryResultObject.Value _
+		                        & "  Class : " & objObject.Class & vbCrLf & vbCrLf
+		If Err <> 0 Then
+			QueryResultObject.Value = QueryResultObject.Value _
+			                        & "  does not have a Class property" & vbCrLf & vbCrLf
+			Err.Clear
+		End If
+	End If
+
+	On Error Goto 0
+
+	QueryResultObjectMembers.Value    = GetMembers( TestQueryInput.Value )
+	QueryResultObjectProperties.Value = GetProperties( TestQueryInput.Value )
+End Sub
+
+
+Function TextFromHTML( URL )
+	' Basic routine borrowed from http://dev.remotenetworktechnology.com/wsh/rubegoldberg.htm
+	' Improved wait-until-ready routine for HTAs by McKirahan on
+	' http://support.microsoft.com/newsgroups/default.aspx?dg=microsoft.public.scripting.scriptlets&tid=be461ec2-b444-440c-8155-ad0e8e839ca6&lang=en&cr=US&sloc=en-us&p=1
+
+	Dim objIE
+
+	TextFromHTML = ""
+
+	On Error Resume Next
+
+	Set objIE = CreateObject( "InternetExplorer.Application" )
+
+ 	objIE.Navigate URL
+
+	While objIE.Busy
+	Wend
+
+	TextFromHTML = objIE.Document.Body.InnerText
+
+	objIE.Quit
+	On Error Goto 0
+End Function
+
+
+Sub Window_Onload()
+	AppName.InnerHTML    = strAppName
+	AppVersion.InnerHTML = strAppVer
+	GetComputerDomain( )
+	CheckUpdate( )
+	TestQueryButton.Focus( )
+End Sub
+
+</SCRIPT>
+
+<BODY STYLE="font:12 pt arial; color:white; filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#004000', EndColorStr='#007F00')">
+
+<DIV ALIGN="Center">
+
+<SPAN ID="Update">&nbsp;</SPAN>
+
+<TABLE BORDER="0" CELLSPACING="4">
+<TR>
+    <TD COLSPAN="3" ALIGN="left">ADSI Query:</TD>
+</TR>
+<TR>
+    <TD COLSPAN="3"><INPUT TYPE="text" NAME="TestQueryInput" SIZE="120"></TD>
+</TR>
+<TR>
+    <TD ALIGN="left"><INPUT TYPE="button" ID="TestQueryButton" CLASS="button" VALUE="Test Query" NAME="TestQueryButton"  OnClick="TestQuery"></TD>
+    <TD ALIGN="center"><INPUT TYPE="button" ID="ClearQueryButton" CLASS="button" VALUE="Clear Query" NAME="ClearQueryButton"  OnClick="ClearQuery"></TD>
+    <TD ALIGN="right"><INPUT TYPE="button" ID="ClearResultsButton" CLASS="button" VALUE="Clear Results" NAME="ClearResultsButton"  OnClick="ClearResults"></TD>
+</TR>
+<TR><TD COLSPAN="3">&nbsp;</TD></TR>
+<TR>
+    <TD COLSPAN="3" ALIGN="left">Resulting Object:</TD>
+</TR>
+<TR>
+    <TD COLSPAN="3"><TEXTAREA NAME="QueryResultObject" ROWS="6" COLS="90"></TEXTAREA></TD>
+</TR>
+<TR><TD COLSPAN="3">&nbsp;</TD></TR>
+<TR>
+    <TD COLSPAN="3" ALIGN="left">Resulting Object's Properties:</TD>
+</TR>
+<TR>
+    <TD COLSPAN="3"><TEXTAREA NAME="QueryResultObjectProperties" ROWS="8" COLS="90"></TEXTAREA></TD>
+</TR>
+<TR><TD COLSPAN="3">&nbsp;</TD></TR>
+<TR>
+    <TD COLSPAN="3" ALIGN="left">Resulting Object's Members:</TD>
+</TR>
+<TR>
+    <TD COLSPAN="3"><TEXTAREA NAME="QueryResultObjectMembers" ROWS="8" COLS="90"></TEXTAREA></TD>
+</TR>
+</TABLE>
+
+<P ALIGN="center"><SPAN ID="AppName">Application Name</SPAN>,&nbsp; Version <SPAN ID="AppVersion">0.00</SPAN><BR>
+<FONT SIZE="-1">HTA "wrapper" for several ADSI sample scripts from the book<BR>
+<a id="lnx1" name="evtst|a|0321501713" href="http://www.amazon.com/exec/obidos/redirect?link_code=as3&amp;path=ASIN/0321501713&amp;tag=robvanderwoudess&amp;camp=211189&amp;creative=373489">VBScript, WMI, and ADSI Unleashed: Using VBScript, WMI, and ADSI to Automate Windows Administration</a><img src="http://www.assoc-amazon.com/e/ir?t=robvanderwoudess&amp;l=as2&amp;o=1&amp;a=0321501713" alt="" style="border: medium none  ! important; margin: 0px ! important;" border="0" height="1" width="1">
+by Don Jones.<BR>
+HTA wrapper &copy; 2007, Rob van der Woude.<BR>
+<A HREF="http://www.robvanderwoude.com/" TARGET="_blank"><FONT COLOR="Red">http://www.robvanderwoude.com</FONT></A></FONT></P>
+
+</DIV>
+
+</BODY>
+</HTML>
