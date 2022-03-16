@@ -2,7 +2,21 @@
 
 ---
 
-## Heding
+## Table of contents
+
+- [Heading](#heading)
+- [Paragraphs](#paragraphs)
+- [Font styles](#font-styles)
+- [Blocks](#blocks)
+- [Lists](#lists)
+- [Images](#images)
+- [Code](#code)
+- [Links](#links)
+- [Table](#table)
+
+---
+
+## Heading
 
 # Heading level 1
 ## Heading level 2
@@ -23,7 +37,7 @@ Your get a new paragraph after an empty line.
 
 ---
 
-## Font style
+## Font styles
 
 This is normal and **this is bold with two asterisks**
 
@@ -77,7 +91,7 @@ Unordered Lists
 
 ---
 
-#Code
+# Code
 
 ```batch
 :: For i=1 to 10 (step 1)...
@@ -93,19 +107,21 @@ GOTO :EOF
 
 ---
 
-Links
+## Links
 
 Link to [Lorem ipsum](https://www.lipsum.com/feed/html)
+
+[Mail me](mailto:fin392@gmail.com)
 
 ---
 
 # Table
 
 | Normal | Centered text | Multi lines text | Numbers |
-| --- | --- | :---: | --- | ---: |
-| Dropbox | TRUE | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac | 123,456.00 |
-| GitHub | FALSE | N/A | 1.99 |
-| Google Drive  | N/A | N/A | 0.01 |
-| OneDrive | TRUE, but not too much | N/A | 0.00 |
+| --- | :---: | --- | ---: |
+| Yes | TRUE | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac | 123,456.00 |
+| No | FALSE | N/A | 1.99 |
+| N/A  | N/A | N/A | 0.01 |
+| Swearing | The truth, the whole truth, and nothing but the truth | N/A | 0.00 |
 
 ---
