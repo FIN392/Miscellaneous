@@ -1,45 +1,84 @@
-# Markdown _test_ (Título 1)
-## Título 2
-### Título 3
-#### Título 4
-##### Título 5
-###### Título 6
-Texto normal
-
-Enlace a [Lorem ipsum](https://www.lipsum.com/feed/html)
-
-_Itálica_
-
-__Negrita__
-
-___Itálica+Negrita___
-
-~~Tachado~~
-
-Línea
+# Markdown simple guide
 
 ---
 
-Adding an image
+## Heding
+
+# Heading level 1
+## Heading level 2
+### Heading level 3
+#### Heading level 4
+Regular text (between size 4 and 5)
+##### Heading level 5
+###### Heading level 6
+
+---
+
+## Paragraphs
+
+Adding two spaces at the end  
+you get a new line.
+
+Your get a new paragraph after a empty line.
+
+---
+
+## Font style
+
+This is normal and **this is bold with two asterisks**
+
+This is normal and __this is bold withtwo underscores__
+
+This is normal and _this is italic_
+
+This is normal and ~~this is strikethrough~~
+
+All combined: ~~**_Bold+Italic+Strikethrough_**~~
+
+---
+
+## Blocks
+
+Blockquote:
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac.
+
+---
+
+## Lists
+
+Ordered list
+
+1. First level
+2. Line 2
+   1. Second level
+   2. Line 2.2
+   3. Line 2.3
+      1. Thrid level
+      2. Line 2.3.2
+3. Line 3
+
+Unordered Lists
+
+- First level
+- Line 2
+   - Second level
+   - Line 2.2
+   - Line 2.3
+      - Thrid level
+      - Line 2.3.2
+- Line 3
+
+---
+
+# Images
 
 ![alt text](https://avatars.githubusercontent.com/fin392?size=100 "Me")
 
-Lista:
-- Item 1
-- Item 2
-- Item 3
+---
 
-Lista ordenada:
-1. Item 1
-2. Item 2
-3. Item 3
-    * Item 3a
-    * Item 3b
+#Code
 
-Cita:
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac.
-
-Código
 ```batch
 :: For i=1 to 10 (step 1)...
 FOR /L %i IN (1,1,10) DO CALL :Main_FOR_i %i
@@ -52,7 +91,13 @@ GOTO :EOF
 :Main_ENDFOR_i
 ```
 
-Tabla
+Links
+
+Link to [Lorem ipsum](https://www.lipsum.com/feed/html)
+
+---
+
+# Table
 
 | Portal | URL | Centered text | Multi lines text | Numbers |
 | --- | --- | :---: | --- | ---: |
