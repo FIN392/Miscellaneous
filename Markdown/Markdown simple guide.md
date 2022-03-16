@@ -19,7 +19,7 @@ Regular text (between size 4 and 5)
 Adding two spaces at the end  
 you get a new line.
 
-Your get a new paragraph after a empty line.
+Your get a new paragraph after an empty line.
 
 ---
 
@@ -91,6 +91,8 @@ GOTO :EOF
 :Main_ENDFOR_i
 ```
 
+---
+
 Links
 
 Link to [Lorem ipsum](https://www.lipsum.com/feed/html)
@@ -99,9 +101,11 @@ Link to [Lorem ipsum](https://www.lipsum.com/feed/html)
 
 # Table
 
-| Portal | URL | Centered text | Multi lines text | Numbers |
+| Normal | Centered text | Multi lines text | Numbers |
 | --- | --- | :---: | --- | ---: |
-| Dropbox | https://www.dropbox.com/ | TRUE | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac | 123,456.00 |
-| GitHub | https://github.com/ | FALSE | N/A | 1.99 |
-| Google Drive | https://drive.google.com/ | N/A | N/A | 0.01 |
-| OneDrive | http://onedrive.live.com/ | TRUE, but not too much | N/A | 0.00 |
+| Dropbox | TRUE | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae ligula ex. Mauris nec enim sollicitudin lacus dignissim tincidunt. Sed imperdiet, ante eu commodo pharetra, ante lectus faucibus felis, quis pharetra justo nisl a leo. Sed ullamcorper, ligula vitae eleifend iaculis, tortor dui dignissim mauris, non aliquet lacus tortor ac | 123,456.00 |
+| GitHub | FALSE | N/A | 1.99 |
+| Google Drive  | N/A | N/A | 0.01 |
+| OneDrive | TRUE, but not too much | N/A | 0.00 |
+
+---
